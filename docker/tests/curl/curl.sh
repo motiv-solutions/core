@@ -5,7 +5,7 @@ printUsage () {
   echo '-b      branch: (current branch as default)'
   echo '-e      extra parameters: Must be send inside quotes "'
   echo '-r      [no arguments] run only: Will not executed a build of the image, use the -r option if an image was already generated'
-  echo '-c      [no arguments] cache: allows to use the docker cache otherwhise "--no-cache" will be use when building the image'
+  echo '-c      [no arguments] cache: allows to use the docker cache otherwise "--no-cache" will be use when building the image'
   echo ""
   echo "============================================================================"
   echo "============================================================================"
@@ -102,9 +102,8 @@ fi
 # Starting the container for the build image
 export databaseType=${database}
 export IMAGE_BASE_NAME=${BUILD_IMAGE_TAG}
-docker-compose -f integration-service.yml \
-  -f ../integration/${database}-docker-compose.yml \
-  -f ../integration/open-distro-docker-compose.yml \
+docker-compose -f curl-service.yml \
+  -f ../sidecar/side-docker-compose.yml \
   up \
   --abort-on-container-exit
 
@@ -113,8 +112,7 @@ testsReturnCode=$?
 
 # Cleaning up
 docker-compose -f integration-service.yml \
-  -f ../integration/${database}-docker-compose.yml \
-  -f ../integration/open-distro-docker-compose.yml \
+   -f ../sidecar/side-docker-compose.yml \
   down
 
 echo

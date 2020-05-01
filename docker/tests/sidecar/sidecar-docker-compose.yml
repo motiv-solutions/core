@@ -1,0 +1,41 @@
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+version: "3.7"
+
+# https://docs.docker.com/compose/compose-file/
+
+networks:
+  db_net:
+
+volumes:
+  cms-shared:
+  cms-local:
+  dbdata:
+
+services:
+
+  sidecar:
+    image: "${SIDECAR_IMAGE_NAME}"
+
+    ports:
+      - "8080:8080"
+    environment:
+      "CMS_HEAP_SIZE": '1g'
+      "CMS_JAVA_OPTS": '-XX:+PrintFlagsFinal'
+      "PROVIDER_DB_DNSNAME": 'db'
+    depends_on:
+      - db
+    volumes:
+      - cms-shared:/data/shared
+      - cms-local:/data/local
+      #- [serverpath]/license.dat:/data/local/dotsecure/license/license.dat
+      #- [serverpath]/license.zip:/data/shared/assets/license.zip
+    networks:
+      - db_net
+
+  database:
+    networks:
+      - db_net
+
+  elasticsearch:
+    networks:
+      - es_net

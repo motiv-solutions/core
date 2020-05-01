@@ -53,6 +53,8 @@ jobs:
   include:
     - stage: build image
       script: bash travis/submit.sh
+    - stage: build sidecar image
+      script: bash travis/submitSidecar.sh
     - stage: build curl image
       script: bash travis/submitCurl.sh
     - stage: tests

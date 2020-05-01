@@ -59,7 +59,6 @@ echo ""
 
 # Prepare to run newman for every found postman collection
 POSTMAN_ENV_FILE="postman_environment.json"
-sed -i 's/localhost:8080/localhost:15005/g' $POSTMAN_ENV_FILE
 mkdir -p /build/src/core/dotCMS/build/reports/tests/curlTest
 cd /build/src/core/dotCMS/src/curl-test
 # Create a map to store collection -> newman result

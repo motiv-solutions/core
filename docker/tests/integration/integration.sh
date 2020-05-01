@@ -5,7 +5,7 @@ printUsage () {
   echo '-b      branch: (current branch as default)'
   echo '-e      extra parameters: Must be send inside quotes "'
   echo '-r      [no arguments] run only: Will not executed a build of the image, use the -r option if an image was already generated'
-  echo '-c      [no arguments] cache: allows to use the docker cache otherwhise "--no-cache" will be use when building the image'
+  echo '-c      [no arguments] cache: allows to use the docker cache otherwise "--no-cache" will be use when building the image'
   echo ""
   echo "============================================================================"
   echo "============================================================================"
