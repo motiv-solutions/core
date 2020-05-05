@@ -22,16 +22,21 @@ services:
       "CMS_HEAP_SIZE": '1g'
       "CMS_JAVA_OPTS": '-XX:+PrintFlagsFinal'
       "PROVIDER_DB_DNSNAME": 'db'
+      EXTRA_PARAMS:
+      GOOGLE_CREDENTIALS_BASE64:
+      EXPORT_REPORTS:
+      PULL_REQUEST:
+      GITHUB_USER:
+      GITHUB_USER_TOKEN:
+      WAIT_DB_FOR: 2m
     depends_on:
       - database
       - elasticsearch
-      - cms-shared:/data/shared
-      - cms-local:/data/local
+    volumes:
+#      - cms-shared:/data/shared
+#      - cms-local:/data/local
       #- [serverpath]/license.dat:/data/local/dotsecure/license/license.dat
       #- [serverpath]/license.zip:/data/shared/assets/license.zip
-    volumes:
-      - cms-shared:/data/shared
-      - cms-local:/data/local
     networks:
       - db_net
       - es_net
