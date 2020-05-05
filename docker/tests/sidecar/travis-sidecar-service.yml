@@ -29,10 +29,13 @@ services:
       - cms-local:/data/local
       #- [serverpath]/license.dat:/data/local/dotsecure/license/license.dat
       #- [serverpath]/license.zip:/data/shared/assets/license.zip
+    volumes:
+      - cms-shared:/data/shared
+      - cms-local:/data/local
     networks:
       - db_net
+      - es_net
 
-    volumes:
   database:
     networks:
       - db_net
