@@ -23,8 +23,8 @@ services:
       "CMS_JAVA_OPTS": '-XX:+PrintFlagsFinal'
       "PROVIDER_DB_DNSNAME": 'db'
     depends_on:
-      - db
-    volumes:
+      - database
+      - elasticsearch
       - cms-shared:/data/shared
       - cms-local:/data/local
       #- [serverpath]/license.dat:/data/local/dotsecure/license/license.dat
@@ -32,6 +32,7 @@ services:
     networks:
       - db_net
 
+    volumes:
   database:
     networks:
       - db_net
